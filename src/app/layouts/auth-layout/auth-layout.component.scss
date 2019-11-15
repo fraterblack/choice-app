@@ -1,0 +1,36 @@
+@import './../../../styles/app-styles-support.scss';
+
+.auth-layout {
+  display: flex;
+  flex-direction: row;
+  @include app-background;
+
+  height: 100%;
+}
+
+.auth-container {
+  background: $light-color;
+  width: 50%;
+  max-width: 540px;
+  height: 100%;
+  overflow: auto;
+
+  @media (min-width: 850px) {
+    width: 100%;
+  }
+}
+
+.auth-content {
+  max-width: 330px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+.logo-container {
+  max-width: 170px;
+  margin: 0 auto 30px;
+
+  .logo {
+    width: 100%;
+  }
+}

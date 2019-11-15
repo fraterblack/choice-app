@@ -1,0 +1,248 @@
+@import './app-styles-support.scss';
+
+/**
+* Some Style Reseting
+*/
+* {
+  &:active,
+  :focus {
+    outline: none !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+// Bootstrap Grid System
+@import "~bootstrap/scss/bootstrap-grid";
+
+// Force mat-form-field full width
+.col mat-form-field {
+  width: 100%;
+}
+
+// Force container not has paddings
+.container,
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Material Theming
+@import '~@angular/material/theming';
+
+// Plus imports for other components in your app.
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto'
+);
+@include mat-core($custom-typography);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$candy-app-primary: mat-palette($mat-green, 700, 400, 800);
+$candy-app-accent:  mat-palette($mat-lime, 'A700', 'A100', 800);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+
+$primary: map-get($candy-app-theme, primary);
+$accent: map-get($candy-app-theme, accent);
+$warn: map-get($candy-app-theme, warn);
+
+/**
+* Some App Styles
+*/
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  font-size: 14px;
+}
+
+body {
+  font-family: Roboto;
+  background: $gray-light-color;
+}
+
+// Helper Styles
+.app {
+    // Main app container
+  &-main {
+    display: block;
+    height: 100%;
+  }
+
+  // Add same bottom padding as defined in the mat-form-field
+  &-form-field {
+    padding-top: 0.84375em;
+    padding-bottom: 1.25em;
+  }
+
+  // Buttons
+  &-block-button {
+    display: block;
+    width: 100%;
+  }
+
+  &-sm-button {
+    font-size: 13px;
+
+    mat-icon {
+      font-size: 20px;
+      margin-right: -3px;
+    }
+  }
+
+  // Title
+  &-page-title {
+    margin: 0 0 20px 0;
+    padding: 0;
+    font-size: 19px;
+    font-weight: normal;
+    color: $primary-light-color;
+
+    @media (max-width: 599px) {
+      font-size: 14px;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      height: 1px;
+      margin-top: 2.5vh;
+      background: $primary-lighter-color;
+
+      @media (max-width: 599px) {
+        margin-top: 5px;
+      }
+    }
+
+    a {
+      font-weight: normal;
+      float: right;
+      margin-top: -8px;
+    }
+  }
+
+  // Text
+  &-text-center {
+    text-align: center;
+  }
+
+  &-text {
+    &-primary {
+      color: mat-color($primary);
+    }
+
+    &-accent {
+      color: mat-color($accent);
+    }
+
+    &-warn {
+      color: mat-color($warn);
+    }
+  }
+
+  // Positioning
+  &-pull-right {
+    float: right;
+  }
+
+  // Grid
+  &-grid {
+    &-actions-container {
+      margin-bottom: 20px;
+
+      button {
+        padding-left: 10px;
+      }
+    }
+
+    &-created-at-column {
+      width: 135px;
+    }
+
+    &-created-at-row {
+      font-size: 12px;
+    }
+
+    &-actions-column {
+      width: 30px;
+    }
+
+    &-check-column {
+      width: 80px;
+    }
+  }
+
+  &-snack-bar {
+    &-error {
+      background: $red-color;
+      color: $light-color;
+
+      .mat-simple-snackbar-action {
+        color: $light-color;
+      }
+    }
+
+    &-warning {
+      background: $yellow-color;
+      color: $dark-color;
+
+      .mat-simple-snackbar-action {
+        color: $dark-color;
+      }
+    }
+
+    &-success {
+      background: $green-color;
+      color: $light-color;
+
+      .mat-simple-snackbar-action {
+        color: $light-color;
+      }
+    }
+  }
+
+  // Form
+  &-form-container {
+    mat-form-field {
+      margin-bottom: 10px;
+    }
+  }
+
+  &-active-field {
+    margin: 20px 0 20px -10px;
+    padding: 10px;
+    max-width: 370px;
+    background: $gray-lighter-color;
+    border: 1px solid $gray-color;
+  }
+
+  &-form-actions {
+    margin-top: 15px;
+
+    button {
+      min-width: 100px;
+      margin-right: 15px;
+    }
+  }
+}

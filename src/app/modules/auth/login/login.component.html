@@ -1,0 +1,40 @@
+<form class="signin-form">
+  <!-- LOGIN -->
+  <div [formGroup]="authGroup">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="email"
+        email
+        required
+      />
+      <mat-label>Email</mat-label>
+      <mat-error>Informe seu email cadastrado</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        required
+      />
+      <mat-label>Senha</mat-label>
+      <mat-error>Informe a senha</mat-error>
+    </mat-form-field>
+
+    <div class="app-form-field">
+      <button type="button"
+        matButton
+        class="app-block-button"
+        mat-raised-button color="primary"
+        (click)="onLogin()">
+        Entrar
+      </button>
+
+      <a class="remember-me-button"
+        mat-button routerLink="/auth/recovery">Esqueci minha senha</a>
+    </div>
+  </div>
+</form>
