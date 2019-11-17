@@ -96,6 +96,12 @@ body {
     padding-bottom: 1.25em;
   }
 
+  &-default-input {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    padding-top: 0.5rem !important;
+  }
+
   // Buttons
   &-block-button {
     display: block;

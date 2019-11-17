@@ -1,0 +1,71 @@
+<h3 class="choice-page-title">
+    {{ !modelId ? 'Nova Opção' : 'Edição Opção' }}
+    <a class="choice-sm-button" color="accent" mat-button disableRipple="true" routerLink="/admin/options">
+        <mat-icon>undo</mat-icon> Voltar
+    </a>
+</h3>
+
+<div class="choice-form-container" [formGroup]="formGroup">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-md-6">
+                <mat-form-field>
+                    <input class="choice-default-input" matInput type="text" formControlName="name" required />
+                    <mat-label>Nome</mat-label>
+                    <mat-error>Nome é obrigatório</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-6">
+                <mat-form-field>
+                    <input class="choice-default-input" matInput type="text" formControlName="description" required />
+                    <mat-label>Descrição</mat-label>
+                    <mat-error>Descrição é obrigatória</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-6">
+                <mat-form-field>
+                    <textarea class="choice-default-input" matInput type="text" formControlName="ingredients"
+                        required></textarea>
+                    <mat-label>Ingredientes</mat-label>
+                    <mat-error>Ingredientes é obrigatório</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-5" [hidden]="isUploadingImage">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="image" (click)="onClickFileInputButton()" readonly
+                        [required]="modelId">
+                    <mat-label>Imagem</mat-label>
+                    <mat-error *ngIf="modelId">Informe uma imagem JPG ou PNG válida</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col col-md-1" [hidden]="isUploadingImage">
+                <input #fileInput hidden type="file" accept="image/*" (change)="onChangeFileInput()" />
+                <button [disabled]="modelId" mat-raised-button color="primary" (click)="onClickFileInputButton()">
+                    <mat-icon>attach_file</mat-icon>
+                </button>
+            </div>
+
+            <div class="col col-md-6" [hidden]="!isUploadingImage">
+                <mat-progress-bar mode="determinate" ></mat-progress-bar>
+            </div>
+        </div>
+
+        <div class="choice-active-field">
+            <mat-checkbox formControlName="active">Ativo</mat-checkbox>
+        </div>
+
+        <div class="choice-form-actions">
+            <button matButton type="button" mat-raised-button color="primary" (click)="onSave()">Salvar</button>
+            <button matButton type="button" mat-raised-button color="primary" (click)="onSave(true)">Salvar e Fechar</button>
+            <button matButton type="button" mat-raised-button color="basic" (click)="onCancel()">Cancelar</button>
+        </div>
+    </div>
