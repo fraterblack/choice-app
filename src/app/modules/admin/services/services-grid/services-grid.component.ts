@@ -63,8 +63,7 @@ export class ServicesGridComponent extends GridComponent implements OnInit {
                     name: 'finished',
                     header: 'Encerrado',
                     binding: this.finished,
-                    sortActive: true,
-                    sortId: 'finishAt',
+                    sortActive: false,
                     headerCssClass: 'choice-grid-check-column',
                 },
                 {
@@ -97,7 +96,15 @@ export class ServicesGridComponent extends GridComponent implements OnInit {
         this.updateGridData(state);
     }
 
-    onAction(originalService: any) {
+    onAction(action: string, index: number, id: number) {
+        switch (action) {
+            case 'new': break;
+            case 'edit': break;
+            case 'delete': break;
+        }
+    }
+
+    markServiceAsFinished(originalService: any) {
         this.busy = true;
 
         const service = originalService;

@@ -12,7 +12,7 @@
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="onAction(row)" [disabled]='row.finishAt'>
+        <button mat-menu-item (click)="markServiceAsFinished(row)" [disabled]='row.finishAt'>
             <mat-icon>edit</mat-icon>
             <span>Encerrar serviço</span>
         </button>
