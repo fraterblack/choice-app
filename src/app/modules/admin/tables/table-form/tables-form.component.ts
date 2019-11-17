@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { AlertService } from 'src/app/core/services/alert.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormComponent, Message } from 'src/app/shared/common';
-import { TableService } from 'src/app/core/services/table.service';
-import { takeUntil } from 'rxjs/operators';
-import { FormHelper } from 'src/app/shared/form-helper';
-import { Table } from 'src/app/core/models/table.model';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Table } from 'src/app/core/models/table.model';
+import { AlertService } from 'src/app/core/services/alert.service';
+import { TableService } from 'src/app/core/services/table.service';
+import { FormComponent, Message } from 'src/app/shared/common';
+import { FormHelper } from 'src/app/shared/form-helper';
 
 @Component({
-    selector: 'app-table-form',
-    templateUrl: './table-form.component.html',
-    styleUrls: ['./table-form.component.scss']
+    selector: 'app-tables-form',
+    templateUrl: './tables-form.component.html',
+    styleUrls: ['./tables-form.component.scss']
 })
-export class TableFormComponent extends FormComponent implements OnInit {
+export class TablesFormComponent extends FormComponent implements OnInit {
     formGroup: FormGroup = new FormGroup({
         name: new FormControl(),
         active: new FormControl(true)

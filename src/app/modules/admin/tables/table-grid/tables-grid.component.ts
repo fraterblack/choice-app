@@ -2,21 +2,21 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { take, takeUntil } from 'rxjs/operators';
+import { TableService } from 'src/app/core/services/table.service';
 import { GridComponent } from 'src/app/shared/common';
 import { mapToGridResponse } from 'src/app/shared/rxjs-operators';
 
-import { AlertService } from './../../../../core/services/alert.service';
-import { AuthService } from './../../../../core/services/auth.service';
-import { Message } from './../../../../shared/common';
-import { GRID_PAGINATION_LIMIT, GridState } from './../../../../shared/components/grid/grid';
-import { TableService } from 'src/app/core/services/table.service';
+import { AlertService } from '../../../../core/services/alert.service';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Message } from '../../../../shared/common';
+import { GRID_PAGINATION_LIMIT, GridState } from '../../../../shared/components/grid/grid';
 
 @Component({
-    selector: 'app-table-grid',
-    templateUrl: './table-grid.component.html',
-    styleUrls: ['./table-grid.component.scss']
+    selector: 'app-tables-grid',
+    templateUrl: './tables-grid.component.html',
+    styleUrls: ['./tables-grid.component.scss']
 })
-export class TableGridComponent extends GridComponent implements OnInit {
+export class TablesGridComponent extends GridComponent implements OnInit {
     @ViewChild('actions', { static: true }) actions: TemplateRef<any>;
     @ViewChild('active', { static: true }) active: TemplateRef<any>;
 

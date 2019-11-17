@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { TableFormComponent } from './table-form/table-form.component';
-import { TableGridComponent } from './table-grid/table-grid.component';
+import { RouterModule, Routes } from '@angular/router';
+
+import { TablesFormComponent } from './table-form/tables-form.component';
+import { TablesGridComponent } from './table-grid/tables-grid.component';
 
 
 const routes: Routes = [
@@ -10,15 +11,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: TableGridComponent
+        component: TablesGridComponent
       },
       {
         path: 'create',
-        component: TableFormComponent
+        component: TablesFormComponent
       },
       {
         path: 'update/:id',
-        component: TableFormComponent
+        component: TablesFormComponent
       }
     ]
   }
