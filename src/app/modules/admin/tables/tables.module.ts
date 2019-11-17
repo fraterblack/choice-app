@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { TablesRoutingModule } from './tables-routing.module';
-import { TableFormComponent } from './table-form/table-form.component';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { TableGridComponent } from './table-grid/table-grid.component';
+
+import { TablesFormComponent } from './table-form/tables-form.component';
+import { TablesGridComponent } from './table-grid/tables-grid.component';
+import { TablesRoutingModule } from './tables-routing.module';
 
 
 @NgModule({
   declarations: [
-    TableFormComponent,
-    TableGridComponent,
+    TablesFormComponent,
+    TablesGridComponent,
   ],
   imports: [
     CommonModule,
