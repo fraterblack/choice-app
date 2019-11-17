@@ -5,9 +5,14 @@ import { ChooseComponent } from './choose/choose.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':companyId/:tableId',
     component: ChooseComponent
-  }
+  },
+  {
+    path: '**',
+    redirectTo: '/error/not-found',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

@@ -1,1 +1,50 @@
-<p>choose works!</p>
+<div class="container-fluid">
+  <div class="row header-information">
+    <div class="row">
+      <div class="col">
+        <p>Desmarque as opções que você não tem interesse</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col options-container">
+      <div class="option">
+        <mat-card class="card">
+          <mat-slide-toggle class="selector" color="primary" checked="true"></mat-slide-toggle>
+          <h3 class="title">Calabresa</h3>
+          <p class="description">Pizza sabor calabresa</p>
+        </mat-card>
+      </div>
+
+      <div class="option">
+        <mat-card class="card with-ingredients">
+          <mat-slide-toggle class="selector" color="primary" checked="true"></mat-slide-toggle>
+          <h3 class="title">Calabresa com Gorgorzola a moda da casa</h3>
+          <p class="description">Pizza sabor calabresa</p>
+          <mat-expansion-panel class="mat-elevation-z0" togglePosition="before">
+            <mat-expansion-panel-header>
+              <mat-panel-title><span>Ingredientes</span></mat-panel-title>
+            </mat-expansion-panel-header>
+
+            Presunto, mussarela, parmesão e azeitona preta
+          </mat-expansion-panel>
+        </mat-card>
+      </div>
+
+      <div class="option">
+        <mat-card class="card disabled">
+          <mat-slide-toggle class="selector" color="primary"></mat-slide-toggle>
+          <h3 class="title">Calabresa com Gorgorzola</h3>
+        </mat-card>
+      </div>
+
+      <div class="option">
+        <mat-card class="card">
+          <mat-slide-toggle class="selector"></mat-slide-toggle>
+          <h3 class="title">Calabresa</h3>
+          <p class="description">Pizza sabor calabresa Pizza sabor calabresa Pizza sabor calabresa Pizza sabor calabresa Pizza sabor calabresa</p>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
