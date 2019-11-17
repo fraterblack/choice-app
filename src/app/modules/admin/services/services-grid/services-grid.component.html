@@ -1,0 +1,20 @@
+<h3 class="choice-page-title">Serviços</h3>
+
+<app-grid [grid]="grid" [data]="data" [busy]="busy" (stateChange)="onGridStateChange($event)"></app-grid>
+
+<ng-template #finished let-row="row" let-index="index">
+    <mat-icon *ngIf="row.finishAt">check</mat-icon>
+</ng-template>
+
+<!-- Grid Actions -->
+<ng-template #actions let-row="row" let-index="index">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="onAction(row)" [disabled]='row.finishAt'>
+            <mat-icon>edit</mat-icon>
+            <span>Encerrar serviço</span>
+        </button>
+    </mat-menu>
+</ng-template>
