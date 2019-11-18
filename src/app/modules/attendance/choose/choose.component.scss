@@ -11,14 +11,14 @@
 
 .option {
   flex: 50%;
-  width: 50%;
+  max-width: 50%;
   padding-left: 7px;
   padding-right: 7px;
   margin-bottom: 15px;
 
   @media (max-width: 800px) {
     flex: 100%;
-    width: 100%;
+    max-width: 100%;
     padding: 0;
   }
 
@@ -32,10 +32,14 @@
       .description {
         color: $gray-darker-color;
       }
+
+      .image {
+        opacity: 0.8;
+      }
     }
 
     &.with-ingredients {
-      padding-bottom: 5px;
+      padding-bottom: 15px;
     }
 
     .selector {
@@ -49,9 +53,17 @@
       color: $primary-color;
     }
 
+    .image {
+      float: left;
+      display: block;
+      width: 50px;
+      height: 50px;
+      background: $accent-lighter-color;
+      margin: 8px 10px 15px 0;
+    }
+
     .description {
-      clear: both;
-      margin-top: 7px;
+      margin-top: 13px;
       font-size: 12px;
     }
   }
@@ -60,8 +72,6 @@
 
 .mat-expansion-panel {
   background: transparent;
-  margin-left: -22px;
-  margin-right: -22px;
 
   &-header {
     width: 105px;
@@ -69,7 +79,31 @@
   }
 }
 
-::ng-deep .mat-expansion-indicator::after {
-  vertical-align: 2px !important;
+::ng-deep {
+  .mat-expansion-indicator::after {
+    vertical-align: 2px !important;
+  }
+
+  .mat-expansion-panel-header {
+    padding: 0 !important;
+    margin-top: 5px;
+    font-size: 14px;
+
+    .disabled & {
+      .mat-expansion-panel-header-title {
+        color: $gray-darker-color;
+      }
+    }
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 !important;
+    font-size: 13px;
+    line-height: 17px;
+
+    .disabled & {
+      color: $gray-darker-color;
+    }
+  }
 }
 

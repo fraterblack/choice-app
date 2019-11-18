@@ -12,9 +12,10 @@
         <mat-card class="card" [ngClass]="{ 'disabled': !option.isAvailable, 'with-ingredients' : option.product.ingredients }">
           <mat-slide-toggle [checked]="option.isAvailable" (change)="onToggleChange(option)" class="selector" color="primary" checked="true"></mat-slide-toggle>
           <h3 class="title">{{ option.product.name }}</h3>
+          <span class="image"></span>
           <p *ngIf="option.product.description" class="description">{{ option.product.description }}</p>
           <mat-expansion-panel *ngIf="option.product.ingredients" class="mat-elevation-z0" togglePosition="before">
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header collapsedHeight="30px" expandedHeight="30px">
               <mat-panel-title><span>Ingredientes</span></mat-panel-title>
             </mat-expansion-panel-header>
             {{ option.product.ingredients }}
