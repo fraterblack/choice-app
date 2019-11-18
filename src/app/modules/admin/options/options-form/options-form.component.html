@@ -22,7 +22,6 @@
                 <mat-form-field>
                     <input class="choice-default-input" matInput type="text" formControlName="description" required />
                     <mat-label>Descrição</mat-label>
-                    <mat-error>Descrição é obrigatória</mat-error>
                 </mat-form-field>
             </div>
         </div>
@@ -33,7 +32,6 @@
                     <textarea class="choice-default-input" matInput type="text" formControlName="ingredients"
                         required></textarea>
                     <mat-label>Ingredientes</mat-label>
-                    <mat-error>Ingredientes é obrigatório</mat-error>
                 </mat-form-field>
             </div>
         </div>
@@ -41,8 +39,7 @@
         <div class="row">
             <div class="col col-md-5" [hidden]="isUploadingImage">
                 <mat-form-field>
-                    <input matInput type="text" formControlName="image" (click)="onClickFileInputButton()" readonly
-                        [required]="modelId">
+                    <input matInput type="text" formControlName="image" (click)="onClickFileInputButton()" readonly>
                     <mat-label>Imagem</mat-label>
                     <mat-error *ngIf="modelId">Informe uma imagem JPG ou PNG válida</mat-error>
                 </mat-form-field>

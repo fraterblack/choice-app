@@ -28,7 +28,8 @@
     &.disabled {
       background: $gray-lighter-color;
 
-      .title {
+      .title,
+      .description {
         color: $gray-darker-color;
       }
     }

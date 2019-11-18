@@ -8,41 +8,17 @@
   </div>
   <div class="row">
     <div class="col options-container">
-      <div class="option">
-        <mat-card class="card">
-          <mat-slide-toggle class="selector" color="primary" checked="true"></mat-slide-toggle>
-          <h3 class="title">Calabresa</h3>
-          <p class="description">Pizza sabor calabresa</p>
-        </mat-card>
-      </div>
-
-      <div class="option">
-        <mat-card class="card with-ingredients">
-          <mat-slide-toggle class="selector" color="primary" checked="true"></mat-slide-toggle>
-          <h3 class="title">Calabresa com Gorgorzola a moda da casa</h3>
-          <p class="description">Pizza sabor calabresa</p>
-          <mat-expansion-panel class="mat-elevation-z0" togglePosition="before">
+      <div class="option" *ngFor="let option of options">
+        <mat-card class="card" [ngClass]="{ 'disabled': !option.isAvailable, 'with-ingredients' : option.product.ingredients }">
+          <mat-slide-toggle [checked]="option.isAvailable" (change)="onToggleChange(option)" class="selector" color="primary" checked="true"></mat-slide-toggle>
+          <h3 class="title">{{ option.product.name }}</h3>
+          <p *ngIf="option.product.description" class="description">{{ option.product.description }}</p>
+          <mat-expansion-panel *ngIf="option.product.ingredients" class="mat-elevation-z0" togglePosition="before">
             <mat-expansion-panel-header>
               <mat-panel-title><span>Ingredientes</span></mat-panel-title>
             </mat-expansion-panel-header>
-
-            Presunto, mussarela, parmesão e azeitona preta
+            {{ option.product.ingredients }}
           </mat-expansion-panel>
-        </mat-card>
-      </div>
-
-      <div class="option">
-        <mat-card class="card disabled">
-          <mat-slide-toggle class="selector" color="primary"></mat-slide-toggle>
-          <h3 class="title">Calabresa com Gorgorzola</h3>
-        </mat-card>
-      </div>
-
-      <div class="option">
-        <mat-card class="card">
-          <mat-slide-toggle class="selector"></mat-slide-toggle>
-          <h3 class="title">Calabresa</h3>
-          <p class="description">Pizza sabor calabresa Pizza sabor calabresa Pizza sabor calabresa Pizza sabor calabresa Pizza sabor calabresa</p>
         </mat-card>
       </div>
     </div>

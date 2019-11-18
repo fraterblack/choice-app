@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { MaterialModule } from './../../shared/material/material.module';
@@ -7,6 +8,7 @@ import { ChooseComponent } from './choose/choose.component';
 @NgModule({
   imports: [
     AttendanceRoutingModule,
+    CommonModule,
     MaterialModule
   ],
   declarations: [
