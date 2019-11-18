@@ -1,12 +1,12 @@
 <div class="attendance-layout">
   <mat-toolbar color="accent" class="toolbar">
     <h1 class="logo-container">
-      <button (click)="goToStart()" mat-flat-button
+      <button mat-flat-button
         ><img class="logo" alt="Choice App" src="../../../assets/images/choice-app.png"
       /></button>
     </h1>
 
-    <span class="header-spacer"></span>
+    <span class="header-spacer">{{ tableName }}</span>
   </mat-toolbar>
 
   <div class="content">
