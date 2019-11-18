@@ -5,7 +5,7 @@ import { ChooseComponent } from './choose/choose.component';
 
 const routes: Routes = [
   {
-    path: ':tableId/:companyId',
+    path: ':tableId',
     component: ChooseComponent
   },
   {

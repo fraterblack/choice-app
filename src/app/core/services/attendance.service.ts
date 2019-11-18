@@ -13,10 +13,22 @@ export class AttendanceService extends Service {
     super();
   }
 
-  get(companyId: string, tableId: string): Observable<any> {
+  get(tableId: string): Observable<any> {
     let params = new HttpParams();
     params = params.set('expand', 'table');
 
-    return this.apiService.get(`/attendance/${tableId}/${companyId}`, params);
+    return this.apiService.get(`/attendance/${tableId}`, params);
+  }
+
+  setOptionStatus(tableId: string, optionId: number, serviceId: number, isAvailable: boolean) {
+    return this.apiService.post(`/attendance/${tableId}/product-decline`, {
+      product: {
+        id: optionId
+      },
+      service: {
+        id: serviceId
+      },
+      isAvailable
+    });
   }
 }
