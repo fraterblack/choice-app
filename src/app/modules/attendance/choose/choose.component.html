@@ -1,1 +1,27 @@
-<p>choose works!</p>
+<div class="container-fluid">
+  <div class="row header-information">
+    <div class="row">
+      <div class="col">
+        <p>Desmarque as opções que você não tem interesse</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col options-container">
+      <div class="option" *ngFor="let option of options">
+        <mat-card class="card" [ngClass]="{ 'disabled': !option.isAvailable, 'with-ingredients' : option.product.ingredients }">
+          <mat-slide-toggle [checked]="option.isAvailable" (change)="onToggleChange(option)" class="selector" color="primary" checked="true"></mat-slide-toggle>
+          <h3 class="title">{{ option.product.name }}</h3>
+          <span class="image"></span>
+          <p *ngIf="option.product.description" class="description">{{ option.product.description }}</p>
+          <mat-expansion-panel *ngIf="option.product.ingredients" class="mat-elevation-z0" togglePosition="before">
+            <mat-expansion-panel-header collapsedHeight="30px" expandedHeight="30px">
+              <mat-panel-title><span>Ingredientes</span></mat-panel-title>
+            </mat-expansion-panel-header>
+            {{ option.product.ingredients }}
+          </mat-expansion-panel>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,15 +2,15 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Services } from '../models/services.model';
+import { Service } from '../models/service.model';
 import { GridResponse } from './../../shared/components/grid/grid';
 import { ApiService } from './api.service';
-import { Service } from './service';
+import { Service as BaseService } from './service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService extends Service {
+export class ServiceService extends BaseService {
 
   constructor(private apiService: ApiService) {
     super();
@@ -20,11 +20,11 @@ export class ServiceService extends Service {
     return this.apiService.get(`/service/${id}`);
   }
 
-  post(service: Services): Observable<any> {
+  post(service: Service): Observable<any> {
     return this.apiService.post(`/service`, service);
   }
 
-  put(id: number, service: Services): Observable<any> {
+  put(id: number, service: Service): Observable<any> {
     return this.apiService.put(`/service/${id}`, service);
   }
 
