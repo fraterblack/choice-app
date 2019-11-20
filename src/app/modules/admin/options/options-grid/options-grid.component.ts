@@ -48,18 +48,6 @@ export class OptionsGridComponent extends GridComponent implements OnInit {
                     sortActive: true
                 },
                 {
-                    name: 'description',
-                    header: 'Descrição',
-                    binding: 'description',
-                    sortActive: true,
-                },
-                {
-                    name: 'ingredients',
-                    header: 'Ingredientes',
-                    binding: 'ingredients',
-                    sortActive: true
-                },
-                {
                     name: 'active',
                     header: 'Ativo',
                     binding: this.active,
