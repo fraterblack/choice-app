@@ -34,9 +34,6 @@ export class OptionsFormComponent extends FormComponent implements OnInit {
     suggestedOptions: SuggestedOption[];
     options: SuggestedOption[] = [];
 
-    private file: File = null;
-    private image: string;
-
     formGroup: FormGroup = new FormGroup({
         name: new FormControl(),
         description: new FormControl(),
@@ -46,13 +43,17 @@ export class OptionsFormComponent extends FormComponent implements OnInit {
     });
 
     modelId: number;
+    autocompleteIsActive = false;
+
+    protected file: File = null;
+    protected image: string;
 
     constructor(
         alertService: AlertService,
-        private optionService: OptionService,
-        private router: Router, route: ActivatedRoute,
-        private uploadFileService: UploadFileService,
-        private dialog: MatDialog
+        protected optionService: OptionService,
+        protected router: Router, route: ActivatedRoute,
+        protected uploadFileService: UploadFileService,
+        protected dialog: MatDialog,
     ) {
         super(alertService);
 
@@ -61,17 +62,23 @@ export class OptionsFormComponent extends FormComponent implements OnInit {
 
     ngOnInit() {
         if (this.modelId) {
-            this.optionService.get(this.modelId)
-                .pipe(takeUntil(this.ngUnsubscribe))
-                .subscribe((res) => {
-                    FormHelper.setFormGroupValues(this.formGroup, res);
+          this.optionService.get(this.modelId)
+            .pipe(takeUntil(this.ngUnsubscribe))
+            .subscribe((res) => {
+                FormHelper.setFormGroupValues(this.formGroup, res);
 
-                    this.isUploadingImage = false;
-                    this.image = res.image;
-                });
+                this.isUploadingImage = false;
+                this.image = res.image;
+            });
+        } else {
+          this.autocompleteIsActive = true;
         }
 
-        this.formGroup.get('name').valueChanges
+        this.startAutoComplete();
+    }
+
+    protected startAutoComplete() {
+      this.formGroup.get('name').valueChanges
           .pipe(
             debounceTime(500),
             distinctUntilChanged(),
@@ -79,7 +86,7 @@ export class OptionsFormComponent extends FormComponent implements OnInit {
           ).subscribe(this.loadSuggestedOptions.bind(this));
     }
 
-    private loadSuggestedOptions(value: string) {
+    protected loadSuggestedOptions(value: string) {
       if (!value || typeof value === 'object' || value.length < 3) {
         return [];
       }
@@ -147,43 +154,49 @@ export class OptionsFormComponent extends FormComponent implements OnInit {
         return this.save(close);
     }
 
-    private save(close?: boolean) {
-        const option = new Option();
-        option.deserialize(FormHelper.getValuesFromFormGroup(this.formGroup));
+    protected save(close?: boolean) {
+      const option = new Option();
+      option.deserialize(FormHelper.getValuesFromFormGroup(this.formGroup));
 
-        let action$: Observable<any>;
+      // Ensure name is a string
+      if (typeof option.name === 'object') {
+        // tslint:disable-next-line: no-string-literal
+        option.name = option.name['name'];
+      }
 
-        if (this.modelId) {
-            action$ = this.optionService.put(this.modelId, option);
-        } else {
-            action$ = this.optionService.post(option);
-        }
+      let action$: Observable<any>;
 
-        action$
-            .pipe(takeUntil(this.ngUnsubscribe))
-            .subscribe(res => {
-                this.emitSuccessMessage(
-                    this.modelId
-                        ? Message.SUCCESSFUL_REGISTRY_EDITION
-                        : Message.SUCCESSFUL_REGISTRY_INSERTION);
+      if (this.modelId) {
+          action$ = this.optionService.put(this.modelId, option);
+      } else {
+          action$ = this.optionService.post(option);
+      }
 
-                // When save & close
-                if (close) {
-                    this.router.navigate([`/admin/options`]);
+      action$
+          .pipe(takeUntil(this.ngUnsubscribe))
+          .subscribe(res => {
+              this.emitSuccessMessage(
+                  this.modelId
+                      ? Message.SUCCESSFUL_REGISTRY_EDITION
+                      : Message.SUCCESSFUL_REGISTRY_INSERTION);
 
-                    // When save only
-                } else {
-                    // When is a new registry, redirect to update
-                    if (!this.modelId) {
-                        this.router.navigate([`/admin/options/update/${res.id}`]);
-                    }
-                }
-            },
-                error => this.emitErrorMessage(error)
-            );
+              // When save & close
+              if (close) {
+                  this.router.navigate([`/admin/options`]);
+
+                  // When save only
+              } else {
+                  // When is a new registry, redirect to update
+                  if (!this.modelId) {
+                      this.router.navigate([`/admin/options/update/${res.id}`]);
+                  }
+              }
+          },
+              error => this.emitErrorMessage(error)
+          );
     }
 
-    private upload(): Observable<any> {
+    protected upload(): Observable<any> {
         if (!this.file) {
             this.emitErrorMessage('Por favor, selecione um arquivo!');
             return;

@@ -1,11 +1,13 @@
 @import "../../../../../styles/app-styles-support.scss";
 
-::ng-deep .mat-progress-bar-fill::after {
-  background-color: $accent-color;
-}
+::ng-deep {
+  .mat-progress-bar-fill::after {
+    background-color: $accent-color;
+  }
 
-::ng-deep .mat-progress-bar-buffer {
-  background: $primary-color;
+  .mat-progress-bar-buffer {
+    background: $primary-color;
+  }
 }
 
 .mat-progress-bar {
@@ -13,5 +15,5 @@
 }
 
 .ingredients-field {
-  min-height: 100px;
+  min-height: 60px;
 }

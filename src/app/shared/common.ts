@@ -8,6 +8,10 @@ import { Grid, GridResponse, GridState } from './components/grid/grid';
 import { FormHelper } from './form-helper';
 
 /**
+ * ENUMERATIONS
+ */
+
+/**
  * Set of commom messages into the application
  */
 export enum Message {
@@ -24,19 +28,7 @@ export enum Message {
 }
 
 /**
- * Abstract class to easily implements Unsubscribe behaviors
- */
-export abstract class Unsubscrable implements OnDestroy {
-  protected ngUnsubscribe = new Subject();
-
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
-}
-
-/**
- * Interfaces
+ * INTERFACES
  */
 export interface QueryParams {
   sort?: string;
@@ -52,6 +44,22 @@ export interface QueryResponse {
   page: number;
   count: number;
   total: number;
+}
+
+/**
+ * ABSTRACT CLASSES
+ */
+
+ /**
+ * Abstract class to easily implements Unsubscribe behaviors
+ */
+export abstract class Unsubscrable implements OnDestroy {
+  protected ngUnsubscribe = new Subject();
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 }
 
 /**
