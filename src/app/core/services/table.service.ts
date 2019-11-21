@@ -1,23 +1,29 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../../environments/environment';
+import { Table } from '../models/table.model';
 import { GridResponse } from './../../shared/components/grid/grid';
 import { ApiService } from './api.service';
 import { Service } from './service';
-import { Table } from '../models/table.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableService extends Service {
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private http: HttpClient) {
     super();
   }
 
   get(id: number): Observable<any> {
     return this.apiService.get(`/table/${id}`);
+  }
+
+  getQrCode(id: number): Observable<any> {
+    return this.http.get(
+      `${environment.api_url}/qrcode/${id}`, { responseType: 'blob' });
   }
 
   post(table: Table): Observable<any> {
