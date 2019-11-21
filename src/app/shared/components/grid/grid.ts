@@ -53,7 +53,7 @@ export interface GridState {
   search?: string;
 }
 
-export interface  GridResponse {
+export interface GridResponse {
   items: any[];
   limit: number;
   page: number;

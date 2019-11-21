@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, startWith, take, takeUntil } from 'rxjs/operators';
 import { Option } from 'src/app/core/models/option.model';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { OptionService } from 'src/app/core/services/option.service';
@@ -10,6 +11,14 @@ import { UploadFileService } from 'src/app/core/services/upload-file.service';
 import { FormComponent, Message } from 'src/app/shared/common';
 import { FormHelper } from 'src/app/shared/form-helper';
 import { filterResponse, uploadProgress } from 'src/app/shared/rxjs-operators';
+
+import { DialogComponent } from './../../../../shared/components/dialog/dialog.component';
+
+export class SuggestedOption {
+  id: number;
+  name: string;
+  ingredients: string;
+}
 
 @Component({
     selector: 'app-options-form',
@@ -21,6 +30,9 @@ export class OptionsFormComponent extends FormComponent implements OnInit {
 
     public progressUploadImage = 0;
     public isUploadingImage = false;
+
+    suggestedOptions: SuggestedOption[];
+    options: SuggestedOption[] = [];
 
     private file: File = null;
     private image: string;
@@ -40,6 +52,7 @@ export class OptionsFormComponent extends FormComponent implements OnInit {
         private optionService: OptionService,
         private router: Router, route: ActivatedRoute,
         private uploadFileService: UploadFileService,
+        private dialog: MatDialog
     ) {
         super(alertService);
 
@@ -54,10 +67,57 @@ export class OptionsFormComponent extends FormComponent implements OnInit {
                     FormHelper.setFormGroupValues(this.formGroup, res);
 
                     this.isUploadingImage = false;
-                    // TODO: Aguardar BE retornar o nome correto do vídeo.
                     this.image = res.image;
                 });
         }
+
+        this.formGroup.get('name').valueChanges
+          .pipe(
+            debounceTime(500),
+            distinctUntilChanged(),
+            startWith('')
+          ).subscribe(this.loadSuggestedOptions.bind(this));
+    }
+
+    private loadSuggestedOptions(value: string) {
+      if (!value || typeof value === 'object' || value.length < 3) {
+        return [];
+      }
+
+      const filterValue = value.toLowerCase();
+
+      this.optionService.getSuggestions(filterValue)
+        .pipe(take(1))
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((data) => {
+          this.suggestedOptions = data.items.map((item) => {
+            return { id: item.id, name: item.name, ingredients: item.ingredients };
+          });
+        });
+    }
+
+    onOptionSelected(data: any) {
+      this.suggestedOptions = [];
+
+      setTimeout(() => {
+        const dialogRef = this.dialog.open(DialogComponent, {
+          width: '500px',
+          data: {
+            message: 'Gostaria de importar os ingredientes?'
+          }
+        });
+
+        dialogRef.afterClosed()
+          .subscribe(result => {
+            if (result) {
+              this.formGroup.get('ingredients').setValue(data.option.value ? data.option.value.ingredients : '');
+            }
+          });
+      }, 500);
+    }
+
+    displayOption(option: SuggestedOption) {
+      return option ? option.name : undefined;
     }
 
     onSave(close?: boolean) {

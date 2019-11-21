@@ -36,6 +36,25 @@ export abstract class Unsubscrable implements OnDestroy {
 }
 
 /**
+ * Interfaces
+ */
+export interface QueryParams {
+  sort?: string;
+  order?: string;
+  page?: number;
+  limit?: number;
+  search?: string;
+}
+
+export interface QueryResponse {
+  items: any[];
+  limit: number;
+  page: number;
+  count: number;
+  total: number;
+}
+
+/**
  * Abstract class to easily implements Form behaviors
  */
 export abstract class FormComponent extends Unsubscrable {
