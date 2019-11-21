@@ -18,11 +18,9 @@
     </div>
 
     <div *ngIf="modelId" class="row">
-      <div class="col col-md-2">
-        <img [src]="imgQrCode">
-      </div>
-      <div class="col col-md-1" style="margin-top: 10em;">
-          <button matButton type="button" mat-raised-button color="primary">Imprimir</button>
+      <div class="col">
+        <img [src]="imgQrCode" class="qrcode-image">
+        <button matButton type="button" class="print-qrcode-button" mat-raised-button color="primary">Imprimir</button>
       </div>
     </div>
 
