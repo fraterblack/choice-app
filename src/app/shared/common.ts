@@ -8,6 +8,10 @@ import { Grid, GridResponse, GridState } from './components/grid/grid';
 import { FormHelper } from './form-helper';
 
 /**
+ * ENUMERATIONS
+ */
+
+/**
  * Set of commom messages into the application
  */
 export enum Message {
@@ -24,6 +28,29 @@ export enum Message {
 }
 
 /**
+ * INTERFACES
+ */
+export interface QueryParams {
+  sort?: string;
+  order?: string;
+  page?: number;
+  limit?: number;
+  search?: string;
+}
+
+export interface QueryResponse {
+  items: any[];
+  limit: number;
+  page: number;
+  count: number;
+  total: number;
+}
+
+/**
+ * ABSTRACT CLASSES
+ */
+
+ /**
  * Abstract class to easily implements Unsubscribe behaviors
  */
 export abstract class Unsubscrable implements OnDestroy {

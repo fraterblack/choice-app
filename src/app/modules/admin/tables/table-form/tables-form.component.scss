@@ -1,1 +1,14 @@
 @import '../../../../../styles/app-styles-support.scss';
+
+.qrcode-image {
+  float: left;
+  width: 205px;
+  height: 205px;
+  background: $accent-lighter-color;
+  border: 1px solid $primary-lighter-color;
+}
+
+.print-qrcode-button {
+  margin-top: 89px;
+  margin-left: 30px;
+}

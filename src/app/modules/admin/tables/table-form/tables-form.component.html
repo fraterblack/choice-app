@@ -18,11 +18,9 @@
     </div>
 
     <div *ngIf="modelId" class="row">
-      <div class="col col-md-2">
-        <img [src]="imgQrCode">
-      </div>
-      <div class="col col-md-1" style="margin-top: 10em;">
-          <button matButton type="button" mat-raised-button color="primary">Imprimir</button>
+      <div class="col">
+        <img [src]="imgQrCode" class="qrcode-image">
+        <button matButton type="button" class="print-qrcode-button" mat-raised-button color="primary">Imprimir</button>
       </div>
     </div>
 
@@ -31,8 +29,8 @@
     </div>
 
     <div class="choice-form-actions">
-      <button matButton type="button" mat-raised-button color="primary" (click)="onSave()">Salvar</button>
-      <button matButton type="button" mat-raised-button color="primary" (click)="onSave(true)">Salvar e Fechar</button>
+      <button matButton type="button" mat-raised-button color="primary" (click)="onSave(true)">Salvar</button>
+      <!-- <button matButton type="button" mat-raised-button color="primary" (click)="onSave(true)">Salvar e Fechar</button> -->
       <button matButton type="button" mat-raised-button color="basic" (click)="onCancel()">Cancelar</button>
     </div>
   </div>

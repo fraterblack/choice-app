@@ -13,7 +13,7 @@
 }
 
 .primary-card {
-  height: 25rem;
+  height: 100%;
   background-color: #f2f2f2;
 }
 
@@ -22,6 +22,7 @@
 }
 
 .secondary-text-color {
+  display: none; // TODO: Workaround until finish screen
   color: rgb(70, 69, 69);
 }
 
@@ -34,6 +35,7 @@
 }
 
 img {
+  display: none; // TODO: Workaround until finish screen
   height: auto;
   width: 100%;
   border-radius: 1.5rem;
@@ -41,4 +43,15 @@ img {
 
 .content[_ngcontent-bef-c1] {
   position: absolute;
+}
+
+// TODO: Workaround until finish screen
+.secondary-card .mat-card-header .mat-card-title {
+  margin: 0;
+}
+
+::ng-deep {
+  .mat-card-content {
+    overflow: hidden;
+  }
 }

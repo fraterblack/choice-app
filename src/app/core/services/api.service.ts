@@ -24,6 +24,11 @@ export class ApiService {
     }
 
     // Workaround: Remove after standarize error returns from API
+    if (error.error && error.error.details && error.error.details.erro) {
+      return throwError(error.error.details.erro);
+    }
+
+    // Workaround: Remove after standarize error returns from API
     if (error.error && error.error.erro && error.error.erro.erro) {
       return throwError(error.error.erro.erro);
     }

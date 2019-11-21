@@ -1,9 +1,12 @@
 <h3 class="choice-page-title">Opções</h3>
 
 <div class="choice-grid-actions-container">
-    <button mat-raised-button color="primary" (click)="onAction('new')">
-        <mat-icon>add</mat-icon> Nova Opção
-    </button>
+  <button mat-raised-button color="primary" (click)="onAction('new')">
+      <mat-icon>add</mat-icon> Nova Opção
+  </button>
+  <button mat-raised-button color="basic" (click)="onAction('newFromSuggestions')">
+    <mat-icon>add</mat-icon> Novo Apartir de Sugestões
+  </button>
 </div>
 
 <app-grid [grid]="grid" [data]="data" [busy]="busy" (stateChange)="onGridStateChange($event)"></app-grid>

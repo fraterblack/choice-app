@@ -1,6 +1,6 @@
 <h3 class="choice-page-title">
     {{ !modelId ? 'Nova Opção' : 'Edição Opção' }}
-    <a class="choice-sm-button" color="accent" mat-button disableRipple="true" routerLink="/admin/options">
+    <a *ngIf="!onTheFlyMode" class="choice-sm-button" color="accent" mat-button disableRipple="true" routerLink="/admin/options">
         <mat-icon>undo</mat-icon> Voltar
     </a>
 </h3>
@@ -10,9 +10,24 @@
         <div class="row">
             <div class="col col-md-6">
                 <mat-form-field>
-                    <input class="choice-default-input" matInput type="text" formControlName="name" required />
+                    <input class="choice-default-input"
+                      *ngIf="!onTheFlyMode && autocompleteIsActive"
+                      matInput type="text"
+                      formControlName="name"
+                      [matAutocomplete]="auto"
+                      required />
+                    <input class="choice-default-input"
+                      *ngIf="onTheFlyMode || !autocompleteIsActive"
+                      matInput type="text"
+                      formControlName="name"
+                      required />
                     <mat-label>Nome</mat-label>
                     <mat-error>Nome é obrigatório</mat-error>
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayOption" (optionSelected)="onOptionSelected($event)">
+                      <mat-option *ngFor="let option of suggestedOptions" [value]="option">
+                        {{ option.name }}
+                      </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
             </div>
         </div>
@@ -29,7 +44,7 @@
         <div class="row">
             <div class="col col-md-6">
                 <mat-form-field>
-                    <textarea class="choice-default-input" matInput type="text" formControlName="ingredients"></textarea>
+                    <textarea class="choice-default-input ingredients-field" matInput type="text" formControlName="ingredients"></textarea>
                     <mat-label>Ingredientes</mat-label>
                 </mat-form-field>
             </div>
@@ -60,8 +75,8 @@
         </div>
 
         <div class="choice-form-actions">
-            <button matButton type="button" mat-raised-button color="primary" (click)="onSave()">Salvar</button>
-            <button matButton type="button" mat-raised-button color="primary" (click)="onSave(true)">Salvar e Fechar</button>
+            <button matButton type="button" mat-raised-button color="primary" (click)="onSave(true)" cdkFocusInitial>Salvar</button>
+            <!-- <button *ngIf="!onTheFlyMode" matButton type="button" mat-raised-button color="primary" (click)="onSave(true)">Salvar e Fechar</button> -->
             <button matButton type="button" mat-raised-button color="basic" (click)="onCancel()">Cancelar</button>
         </div>
     </div>
