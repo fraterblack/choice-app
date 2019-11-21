@@ -60,4 +60,8 @@ export class OptionService extends Service {
 
     return this.apiService.get(`/product-mining`, params);
   }
+
+  querySuggestions(params?: HttpParams): Observable<GridResponse> {
+    return this.apiService.get(`/product-mining`, params);
+  }
 }

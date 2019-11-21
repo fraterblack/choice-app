@@ -1,0 +1,25 @@
+@import "../../../../../styles/app-styles-support.scss";
+
+::ng-deep {
+  .suggestions-grid-action-column {
+    width: 100px;
+  }
+
+  .suggestions-grid-name-row {
+    width: 30%;
+    padding-right: 15px;
+  }
+
+  .suggestions-grid-ingredients-row {
+    padding-right: 15px;
+  }
+
+  th.suggestions-grid-used-column,
+  .suggestions-grid-used-row {
+    text-align: center !important;
+  }
+
+  .cdk-overlay-pane {
+    overflow: auto;
+  }
+}

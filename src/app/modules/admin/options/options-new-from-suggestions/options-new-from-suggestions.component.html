@@ -1,0 +1,17 @@
+<h3 class="choice-page-title">
+  Sugestões para Cadastro
+  <a class="choice-sm-button" color="accent" mat-button disableRipple="true" routerLink="/admin/options">
+      <mat-icon>undo</mat-icon> Voltar
+  </a>
+</h3>
+
+<app-grid [grid]="grid" [data]="data" [busy]="busy" (stateChange)="onGridStateChange($event)"></app-grid>
+
+<ng-template #used let-row="row" let-index="index">
+    <mat-icon *ngIf="!row.isUsage">check</mat-icon>
+</ng-template>
+
+<!-- Grid Actions -->
+<ng-template #actions let-row="row" let-index="index">
+    <button matButton type="button" mat-raised-button color="primary" (click)="onCreate(row)">Cadastrar</button>
+</ng-template>

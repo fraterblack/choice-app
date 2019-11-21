@@ -7,7 +7,6 @@ import { GridComponent } from 'src/app/shared/common';
 import { mapToGridResponse } from 'src/app/shared/rxjs-operators';
 
 import { AlertService } from './../../../../core/services/alert.service';
-import { AuthService } from './../../../../core/services/auth.service';
 import { Message } from './../../../../shared/common';
 import { GRID_PAGINATION_LIMIT, GridState } from './../../../../shared/components/grid/grid';
 
@@ -22,7 +21,7 @@ export class OptionsGridComponent extends GridComponent implements OnInit {
 
     private gridState: GridState;
 
-    constructor(private optionService: OptionService, private authService: AuthService, alertService: AlertService, private router: Router) {
+    constructor(private optionService: OptionService, alertService: AlertService, private router: Router) {
         super(alertService);
     }
 
@@ -96,6 +95,9 @@ export class OptionsGridComponent extends GridComponent implements OnInit {
             case 'new':
                 this.router.navigate([`/admin/options/create`]);
                 break;
+            case 'newFromSuggestions':
+              this.router.navigate([`/admin/options/create-from-suggestions`]);
+              break;
             case 'edit':
                 this.router.navigate([`/admin/options/update/${id}`]);
                 break;
