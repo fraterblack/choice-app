@@ -1,0 +1,44 @@
+.mat-card.scrollable-content {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  > .mat-card-title-group {
+    display: block;
+  }
+
+  > .mat-card-content {
+    overflow-y: auto;
+  }
+}
+
+.primary-card {
+  height: 25rem;
+  background-color: #f2f2f2;
+}
+
+.primary-text-color {
+  color: #333;
+}
+
+.secondary-text-color {
+  color: rgb(70, 69, 69);
+}
+
+.center-items {
+  text-align: center;
+}
+
+.secondary-card {
+  background-color: #b0ccb265;
+}
+
+img {
+  height: auto;
+  width: 100%;
+  border-radius: 1.5rem;
+}
+
+.content[_ngcontent-bef-c1] {
+  position: absolute;
+}
