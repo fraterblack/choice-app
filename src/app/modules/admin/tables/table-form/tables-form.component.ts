@@ -22,6 +22,7 @@ export class TablesFormComponent extends FormComponent implements OnInit {
 
   isImageLoading = false;
   imgQrCode: any;
+
   modelId: number;
 
   constructor(
@@ -50,7 +51,7 @@ export class TablesFormComponent extends FormComponent implements OnInit {
           this.isImageLoading = false;
         }, error => {
           this.isImageLoading = false;
-          console.log(error);
+          this.emitErrorMessage(error);
         });
     }
   }
